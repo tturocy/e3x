@@ -1,0 +1,8 @@
+site_name: E3X
+nav:
+    - Home: index.md
+theme: readthedocs
+markdown_extensions:
+    - footnotes
+    - admonition
+
