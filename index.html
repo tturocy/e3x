@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="None">
+  
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <title>Home - E3X</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Home";
+    var mkdocs_page_input_path = "index.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="js/jquery-2.1.1.min.js" defer></script>
+  <script src="js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="." class="icon icon-home"> E3X</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href=".">Home</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#software-engineering-for-experimental-economics">Software Engineering for Experimental Economics</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#version-control">Version control</a></li>
+        
+            <li><a class="toctree-l3" href="#setting-up-a-python-development-environment">Setting up a Python development environment</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href=".">E3X</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Home</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="software-engineering-for-experimental-economics">Software Engineering for Experimental Economics</h1>
+<p>These are working notes for learning and applying software engineering
+practices for the efficinent development of software to do
+economic decision-making experiments.</p>
+<h2 id="version-control">Version control</h2>
+<p>An essential prerequisite is learning the basics of a modern
+distributed version control system.  We highly recommend
+<a href="https://git-scm.com"><code>git</code></a>.</p>
+<p>A good introduction to distribution version control, and
+<code>git</code> in particular, targeted at scientific computing users is
+the one offered by
+<a href="http://swcarpentry.github.io/git-novice/">Software Carpentry</a>.
+You should work through their exercises before starting to
+program, to become familiar with how <code>git</code> works.</p>
+<h2 id="setting-up-a-python-development-environment">Setting up a Python development environment</h2>
+<p>(At present this assumes a Mac.  Versions for Windows and Linux
+to be written!)</p>
+<p>Python comes pre-installed on a Mac, or you can download it from
+the official Python website.  <em>However</em>, we <em>strongly recommend</em>
+that you don't develop your software using the system Python
+or one you download and install directly.  The reason is that a
+Python installation consists of both the Python interpreter, as well
+as a large number of supporting libraries and files.  A benefit
+of using Python to develop your software is this enormous ecosystem
+of libraries.</p>
+<p>However, installing libraries directly into a Python installation
+that's shared across the system has two important drawbacks:</p>
+<ol>
+<li>Any software that relies on that Python installation also relies
+on certain additional packages being installed, and those packages
+being of specific versions.  If you upgrade or change the packages
+that are installed in a shared Python, you might unintentionally
+break other programs.  Especially on Mac and Linux, there are many
+programs and utilities that rely on the system installation of Python,
+so you might unwittingly destablise your whole system.</li>
+<li>When doing an experiment, you want complete control of the
+environment your experiment runs in.  When you move from testing
+on your own computer to deploying your experiment in your lab or
+on a server, you want to know you are running your program in
+the same version of Python, with the same versions of any libraries
+installed.</li>
+</ol>
+<p>The steps we will outline here will keep you from accidentally
+messing up a Python installation relied on by other programs on your
+computer, and make it easy for you (and others) to develop and use
+your software on other computers by tracking the versions of Python
+and other libraries you rely on.</p>
+<p>Some of these steps you only need to do once on a given computer.
+Some you should do for each project you are working on.  They require
+a small amount of extra work up front.  However, they are fairly
+routine and take just a few minutes; just follow the cookbook here.
+Please trust us when we tell you this investment in good "hygiene"
+will save you untold hours of confusion and frustration down
+the line.</p>
+<h3 id="steps-to-take-once-on-a-computer">Steps to take once on a computer</h3>
+<p>These are steps you will need to do only when setting up your computer
+to develop or deploy your software.</p>
+<h4 id="install-homebrew">Install homebrew</h4>
+<p><code>Homebrew</code> is a package manager for MacOS.  It is a convenient
+way to manage the installation and maintenance of many open-source
+programs and libraries.</p>
+<p>Go to the homebrew website <a href="https://brew.sh">https://brew.sh</a>
+and follow the instructions
+there for installation - it involves simply copying and pasting a
+single line into the Terminal.</p>
+<h4 id="installing-python-via-pyenv">Installing Python via pyenv</h4>
+<p>Rather than installing Python using the installers provided on the
+official site, we will use <a href="https://github.com/pyenv/pyenv"><code>pyenv</code></a>
+to download and install Python.  <code>pyenv</code> will allow us to install
+as many different versions of Python as we like, without interfering
+with each other (or the system installation of Python).<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
+<p>In the Terminal, run</p>
+<pre><code>$ brew install pyenv
+</code></pre>
+<p>To see the list of Python versions you have installed:</p>
+<pre><code>$ pyenv versions
+* system (set by /Users/YOURNAME/.pyenv/version)
+</code></pre>
+<p>You can get a list of all the Python versions that <code>pyenv</code> can install</p>
+<pre><code>$ pyenv install list
+</code></pre>
+<p>You'll get a long list of options (which we don't include here).
+As of the writing of this section, 3.7.7 is the most recent
+version in the 3.7 series of Python.  We'll install that:</p>
+<pre><code>$ pyenv install 3.7.7
+</code></pre>
+<p>It will take a few minutes for the build to complete.  If you are
+uncomfortable with the terminal sitting there with no output
+for a while, and want to watch the sausage being made, you can turn
+on verbose mode:</p>
+<pre><code>$ pyenv install -v 3.7.7
+</code></pre>
+<p>After the build completes, you'll see 3.7.7 listed in the list
+of available versions:</p>
+<pre><code>$ pyenv versions
+* system (set by /Users/YOURNAME/.pyenv/version)
+  3.7.7
+</code></pre>
+<p>At the moment, if you run <code>python</code> at the prompt, you would be using
+the system python (that's what the <code>*</code> means in the output).  You
+can change this by using <code>pyenv shell</code>:</p>
+<pre><code>$ pyenv which python
+/usr/local/bin/python
+$ pyenv shell 3.7.7
+$ python -V
+Python 3.7.7
+$ pyenv which python
+/Users/YOURNAME/.pyenv/versions/3.7.7/bin/python
+</code></pre>
+<p>This changes the version of Python being used for the current shell
+you're working in only.  If you open a new shell, it will still
+default to the system Python.</p>
+<p>This gets us part of the way there; we can install whichever version
+of Python we'd like to use, and we can keep it separate from the
+Python the system uses (and other users use, as well).  But if we
+start installing packages in the 3.7.7 installation, we still
+have the problem of keeping track of which packages we need for
+each program we are writing.  We'll turn to solving that next.</p>
+<h3 id="virtual-environments">Virtual environments</h3>
+<p>A Python <em>virtual environment</em> allows us to isolate further the
+set of packages and configuration of Python, so we can control
+the environment our program runs in and keep it separate from
+the environment used by other programs we might having installed
+or be developing.  They are similar in spirit to what we have
+done above, with installing different versions of Python via
+<code>pyenv</code> - each of those versions has its own environment with its
+own set of installed package.  But, for example, what if we wanted
+to develop two different programs using Python 3.7.7, but wanted
+to manage the packages the two programs depended on separately?
+This is what a virtual environment allows us to do.<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></p>
+<p>There is a plugin for <code>pyenv</code> which makes creation and management
+of virtual environments easy.  We'll install it via Homebrew:</p>
+<pre><code>$ brew install pyenv-virtualenv
+</code></pre>
+<p>You'll get a message like this:</p>
+<pre><code>==&gt; Caveats
+To enable auto-activation add to your profile:
+  if which pyenv-virtualenv-init &gt; /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+</code></pre>
+<p>We won't use auto-activation in this document; we'll prefer to
+activate virtual environments manually to encourage awareness of
+when we are or aren't running in a virtual environment.</p>
+<p>The syntax for creating a virtual environment is:</p>
+<pre><code>$ pyenv virtualenv &lt;python_version&gt; &lt;environment_name&gt;
+</code></pre>
+<p>In our example, if we want to create a virtual environment for our
+first project, we might do</p>
+<pre><code>$ pyenv virtualenv 3.7.7 myproject
+</code></pre>
+<p>If you then look at the versions installed, you would see</p>
+<pre><code>$ pyenv versions
+  system
+* 3.7.7 (set by PYENV_VERSION environment variable)
+  3.7.7/envs/myproject
+  myproject
+</code></pre>
+<p>This is quite helpful as it shows the similarities and differences
+between a <code>pyenv</code> installation of a version of Python, and a virtual
+environment based on one of those installed versions.  They're
+similar in that both represent a separate environment, with separate
+sets of installed packages.  Virtual environments are organised
+by the base version of Python.  So, our new environment <code>myproject</code>
+appears twice.  One listing, <code>3.7.7/envs/myproject</code>, is more explicit;
+it tells us that this environment is based on Python 3.7.7.
+The other, <code>myproject</code>, is a convenient shortcut name, which we'll
+typically use.</p>
+<p>The virtual environment has been created, but we aren't yet using it.
+To do that, we activate it:</p>
+<pre><code>$ pyenv activate myproject
+(myproject) $
+</code></pre>
+<p>Helpfully, the Terminal prompt changes to include the name of the
+virtual environment.  We can confirm which instance of the Python
+interpreter executable we are using:</p>
+<pre><code>(myproject) $ pyenv which python
+/Users/arbiter/.pyenv/versions/myproject/bin/python
+(myproject) $ python -V
+Python 3.7.7
+</code></pre>
+<p>Now we are all set!  When we install packages while using this
+virtual environment, they appear only in this virtual environment;
+they do not affect the system Python, the main Python 3.7.7
+installation we did earlier via <code>pyenv</code>, or any other virtual
+environment you might have.</p>
+<p>If you want to switch virtual environments, you can just
+<code>pyenv activate</code> it as above.  If you want to deactivate the
+virtual environment, and drop back to the Python installation for
+the current shell, do</p>
+<pre><code>(myproject) $ pyenv deactivate
+$ pyenv which python
+/usr/local/bin/python
+</code></pre>
+<p>The name of the virtual environment disappears, and you're back,
+in this case, to the system Python.</p>
+<h3 id="a-typical-development-workflow">A typical development workflow</h3>
+<p>We recommend having one virtual environment for each project you
+are working on.  While it might be the case that at any given moment
+of time you're using the same versions of packages across several
+projects, there might be reasons you might change this.  For example,
+suppose you are working on two projects, <code>foo</code> and <code>bar</code>, both of
+which rely on <code>tegwar</code> version 1.0.0.  You finish developing and
+testing <code>foo</code> and start running experiments.  At this point, you
+should <em>always</em> use <code>tegwar</code> version 1.0.0 for <code>foo</code>; changing to
+a different version might lead to subtle bugs or other changes in
+behaviour.  However, if <code>bar</code> is still under development, and
+<code>tegwar</code> version 1.1.0 comes out with helpful new features, you might
+want to take advantage of those in developing <code>bar</code>.  If you have
+been using different virtual environments for <code>foo</code> and <code>bar</code>,
+you can accomplish this easily.</p>
+<p>For example, suppose that you're going to use
+(oTree)[https://otree.org] as your framework for your experiment.
+You would do the following steps:</p>
+<pre><code>$ pyenv activate myproject
+$ pip3 install otree
+</code></pre>
+<p>This will install the latest version of oTree, and all its
+dependencies.</p>
+<div class="admonition warning">
+<p class="admonition-title">A warning note</p>
+<p>The oTree docs give very bad advice for installing oTree.
+They suggest installing it in the system or a downloaded Python,
+and not a virtual environment.
+Further, they suggest using the -U flag, which means "upgrade".
+You certainly can upgrade packages within a virtual environment,
+while you are developing your software.
+However it is safer to create a new one and install the latest
+versions there - because if for some reason the upgraded packages
+break your program, you have a fallback.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Another warning note</p>
+<p>The oTree documentation also suggests running upgrade
+every several weeks.  We strongly advise against this.
+If you do want to migrate to a newer version of oTree,
+create a new virtual environment and test your software in
+that new virtual environment before migrating.
+Once you have fully tested and start running your experiment,
+you should <em>never</em> switch versions of oTree or another package.
+This is not only a matter of good software engineering but
+good science.  You should be able to reproduce your environment
+for running your experiment at any point in the future
+(e.g. when Referee 2 asks you to do something).</p>
+</div>
+<p>oTree depends on a lot of packages.  This is a great strength of
+using Python for developing your program; there are libraries and
+packages for doing many things, so you don't have to invent the wheel.
+However, if you develop your program on your own computer, and then
+go to test it in a lab, you want to be sure to be using the same
+versions of not only oTree, but also all its dependent packages.
+Fortunately, there's a very easy way to do this:</p>
+<pre><code>(myproject) $ pip3 freeze
+</code></pre>
+<p>Will give you a (long!) list of all of the packages installed.
+We will show you later how to use this effectively when preparing to
+run your experiment on a computer that's different than the one you've
+been programming it on.</p>
+<div class="admonition note">
+<p class="admonition-title">Using an IDE instead of the command line</p>
+<p>The examples we've given here for activating a virtual environment
+and installing packages use the Terminal command line.
+If you are using an IDE (e.g. PyCharm) for developing and testing
+your software, consult the documentation for how to work with
+virtual environments.  All good IDEs will have strong support for
+this.</p>
+</div>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>This section benefitted greatly from the advice given at
+<a href="https://realpython.com/intro-to-pyenv/">https://realpython.com/intro-to-pyenv/</a>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>For a more general introduction to Python virtual environments,
+see
+<a href="https://realpython.com/python-virtual-environments-a-primer/">https://realpython.com/python-virtual-environments-a-primer/</a>&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.0.4
+Build Date UTC : 2020-03-31 08:44:03
+-->
