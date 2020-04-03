@@ -262,7 +262,7 @@ been using different virtual environments for `foo` and `bar`,
 you can accomplish this easily.
 
 For example, suppose that you're going to use
-(oTree)[https://otree.org] as your framework for your experiment.
+[oTree](https://otree.org) as your framework for your experiment.
 You would do the following steps:
 
 	$ pyenv activate myproject
@@ -318,6 +318,203 @@ been programming it on.
 	your software, consult the documentation for how to work with
 	virtual environments.  All good IDEs will have strong support for
 	this.
+
+
+## A basic workflow
+
+We'll now have a look at the basics of integrating virtual
+environments and version control with the
+[oTree tutorial](https://otree.readthedocs.io/en/latest/tutorial/part1_texteditor.html).
+
+First, we create a virtual environment for our project, and install
+oTree in it.  We'll use Python 3.7.7, as built in the previous section.
+
+    $ pyenv shell 3.7.7
+    $ pyenv virtualenv tutorial1
+	$ pyenv activate tutorial1
+	(tutorial) $ pip3 install otree
+
+Now, go to the directory where you're going to put the source code
+for your project.  In this example, I'm using a directory `src` off
+the root directory for my account:
+
+    $ cd ~/src
+	(tutorial1) src $ otree startproject my_simple_survey
+	(tutorial1) src $ cd my_simple_survey
+
+!!! note "Virtual environments and project directories"
+    Don't confuse _virtual environments_ with _project directories_.
+    The project directory is where you'll keep all the source code
+	for the experiment you're developing.  The virtual environment
+	contains the Python interpreter and libraries you'll use to
+	run the server.
+
+The `otree startproject` command sets up a minimal working set of
+files.  What you should do straightaway is set up a git repository,
+which contains a snapshot of these files:
+
+    (tutorial1) my_simple_survey $ git init
+    Initialized empty Git repository in /Users/YOURNAME/src/my_simple_survey/.git/
+	(tutorial1) my_simple_survey $ git add * .gitignore
+
+This command stages everything in the project directory.  It also
+includes the `.gitignore` file, which `otree startproject` also
+creates and says which files should *not* be put under version
+control.
+
+    (tutorial1) my_simple_survey $ git status
+    On branch master
+
+    No commits yet
+
+    Changes to be committed:
+      (use "git rm --cached <file>..." to unstage)
+
+	        new file:   .gitignore
+   	        new file:   Procfile
+	        new file:   _static/global/empty.css
+	        new file:   _templates/global/Page.html
+	        new file:   manage.py
+	        new file:   requirements.txt
+	        new file:   requirements_base.txt
+	        new file:   settings.py
+
+We then commit these files.
+
+    (tutorial1) my_simple_survey $ git commit -m "Initial commit of default oTree project."
+    [master (root-commit) 16d0c59] Initial commit of default oTree project.
+     8 files changed, 78 insertions(+)
+     create mode 100644 .gitignore
+     create mode 100644 Procfile
+     create mode 100644 _static/global/empty.css
+     create mode 100644 _templates/global/Page.html
+     create mode 100644 manage.py
+     create mode 100644 requirements.txt
+     create mode 100644 requirements_base.txt
+     create mode 100644 settings.py
+
+The idea of `git` is that it makes commits fairly easy to create and
+work with.  You should get in the habit of committing often, by
+breaking down the development of your program into individual steps,
+and committing after each one.  If you do this, you can save yourself
+a lot of grief, because you can always fall back on the last working
+version if something goes awry!
+
+Next you setup the application:
+
+    (tutorial1) my_simple_survey $ otree startapp my_simple_survey
+    (tutorial1) my_simple_survey $ git status
+    On branch master
+    Untracked files:
+      (use "git add <file>..." to include in what will be committed)
+
+	        my_simple_survey/
+
+    nothing added to commit but untracked files present (use "git add" to track)
+
+Add the application files to version control and commit:
+
+    (tutorial1) my_simple_survey $ git add my_simple_survey
+    (tutorial1) my_simple_survey $ git status
+    On branch master
+    Changes to be committed:
+      (use "git reset HEAD <file>..." to unstage)
+
+	        new file:   my_simple_survey/__init__.py
+	        new file:   my_simple_survey/_builtin/__init__.py
+	        new file:   my_simple_survey/models.py
+	        new file:   my_simple_survey/pages.py
+	        new file:   my_simple_survey/templates/my_simple_survey/MyPage.html
+	        new file:   my_simple_survey/templates/my_simple_survey/Results.html
+	        new file:   my_simple_survey/tests.py
+
+    (tutorial1) my_simple_survey $ git commit -m "Set up my_simple_survey app."
+    [master 84ac43e] Set up my_simple_survey app.
+     7 files changed, 108 insertions(+)
+     create mode 100644 my_simple_survey/__init__.py
+     create mode 100644 my_simple_survey/_builtin/__init__.py
+     create mode 100644 my_simple_survey/models.py
+     create mode 100644 my_simple_survey/pages.py
+     create mode 100644 my_simple_survey/templates/my_simple_survey/MyPage.html
+     create mode 100644 my_simple_survey/templates/my_simple_survey/Results.html
+     create mode 100644 my_simple_survey/tests.py
+
+Now follow the steps in the tutorial to edit `models.py` and `pages.py` and
+define the templates as per the instructions there, and test your
+program.  Once you've done all that, your working directory will look
+something like this:
+
+    (tutorial1) my_simple_survey $ git status
+    On branch master
+    Changes not staged for commit:
+      (use "git add <file>..." to update what will be committed)
+      (use "git checkout -- <file>..." to discard changes in working directory)
+
+	        modified:   my_simple_survey/models.py
+	        modified:   my_simple_survey/pages.py
+	        modified:   my_simple_survey/templates/my_simple_survey/MyPage.html
+	        modified:   my_simple_survey/templates/my_simple_survey/Results.html
+	        modified:   settings.py
+
+Save your work with another commit:
+
+	(tutorial1) my_simple_survey $ git add my_simple_survey settings.py
+	(tutorial1) my_simple_survey $ git commit -m "Finished initial implementation of survey."
+	[master 2ff0631] Finished initial implementation of survey.
+	 5 files changed, 20 insertions(+), 21 deletions(-)
+
+## Good habits and practices
+
+Here are some suggestions for working habits and practices using
+`git` and virtual environments.
+
+1.  Use one virtual environment for every project.  So, for example,
+    if you were to move on to the next tutorial from the oTree
+    documentation, create a different virtual environment
+	(perhaps `tutorial2`), install oTree there, and use that
+	virtual environment to run the program.  The rationale for this
+	is that you will develop experiments at different rates, and
+	you may want, for example, to use different versions of oTree
+	or different versions of libraries.  It also means that when
+	you create the list of required libraries when you go to deploy
+	your software, you'll only have the ones you need for each
+	experiment.
+
+2.  Don't upgrade packages in a virtual environment.  The oTree
+    documentation suggests upgrading oTree every few weeks with
+	`pip install -U otree`.  This is *terrible* advice.  Generally
+	speaking, you should stick with the same versions of any
+	packages while developing, and use the same versions of packages
+	when you test and when you deploy.  It's not per se important
+	to have the latest version of packages; and, you may find that
+	moving to a newer version of a package may actually break your
+	code which was previously running just fine.
+
+	If you *do* want to upgrade packages while you are developing
+	your software, what you should do is create a new virtual
+	environment, install the desired version of the packages there,
+	and then test (extensively!) your program in the new virtual
+	environment.  If you are satisfied everything is OK, then you
+	can delete the old virtual environment and proceed with using the
+	new one.  You should do this step separately and not while also
+	making changes to your code, except for any changes to your code
+	that are required by the new versions of the packages you are
+	using.
+
+3.  Break down your programming into small steps, and commit (with
+    an informative commit message!) after each step.  As you become
+	more comfortable with `git`, you can also start making use of
+	branches to organise different parts of your development.
+
+4.  Make heavy use of the "bots" feature of oTree to test your
+    program.  Ideally run tests before each commit.  Don't forget to
+	make bots do unexpected and non-obvious things.
+ 
+
+
+
+
+
 
 
 
