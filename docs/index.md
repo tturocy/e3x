@@ -24,6 +24,11 @@ program, to become familiar with how `git` works.
 (At present this assumes a Mac.  Versions for Windows and Linux
 to be written!)
 
+If you are relatively new to using the Terminal shell on the Mac,
+we suggest you start by doing the
+[Introduction to the Unix Shell](http://swcarpentry.github.io/shell-novice/)
+from Software Carpentry.
+
 Python comes pre-installed on a Mac, or you can download it from
 the official Python website.  However, we *strongly recommend*
 that you don't develop your software using the system Python
@@ -94,12 +99,49 @@ with each other (or the system installation of Python).[^1]
 
 In the Terminal, run
 
-	$ brew install pyenv
+    $ brew install pyenv pyenv-virtualenv
+
+This will install `pyenv` itself, as well as some plugins which
+help manage virtual environments.  (More about virtual environments
+in a later section!)  It will also install a number of other packages
+which `pyenv` depends on, so the download and install could take a few
+minutes and generate a fair amount of text logs.
+
+After installing `pyenv` for the first time, you should also issue the
+following commands in the terminal:
+
+	$ echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.bash_profile
+	$ exec "$SHELL"
+
+What this does is adds lines to the end of your profile that sets up
+`pyenv` whenever you open a new terminal shell, and then restarts
+the shell in this window.   You only need to do this when you first
+install `pyenv`.
+
+!!! note "Other shells"
+    The above assumes you're using `bash`, which is the default shell
+	on MacOS.  You can tell if you're using bash by executing
+
+	    $ echo $SHELL
+        /bin/bash
+
+	If you get something other than `bash` back, you're using a
+    different shell.  This is completely OK, but the instructions for
+	configuring `pyenv` in your shell are slightly different.
+	See the pyenv page at https://github.com/pyenv/pyenv for
+	advice for configuring your shell.
+
 
 To see the list of Python versions you have installed:
 
 	$ pyenv versions
 	* system (set by /Users/YOURNAME/.pyenv/version)
+
+The `system` entry refers to the installation of Python that comes
+with MacOS.  As mentioned, we do not want to make changes to that
+installation, because other programs depend on the packages installed
+there; we want to set up our own installations of Python that we
+can configure the way we want, without interfering with other programs.
 
 You can get a list of all the Python versions that `pyenv` can install
 
@@ -168,19 +210,8 @@ see
 [https://realpython.com/python-virtual-environments-a-primer/](https://realpython.com/python-virtual-environments-a-primer/)
 
 There is a plugin for `pyenv` which makes creation and management
-of virtual environments easy.  We'll install it via Homebrew:
-
-	$ brew install pyenv-virtualenv
-
-You'll get a message like this:
-
-	==> Caveats
-	To enable auto-activation add to your profile:
-	  if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
-
-We won't use auto-activation in this document; we'll prefer to
-activate virtual environments manually to encourage awareness of
-when we are or aren't running in a virtual environment.
+of virtual environments easy, which we installed already in the
+earlir section when installing `pyenv`.
 
 The syntax for creating a virtual environment is:
 
