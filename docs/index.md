@@ -1,7 +1,7 @@
 # Software Engineering for Experimental Economics
 
 These are working notes for learning and applying software engineering
-practices for the efficinent development of software to do
+practices for the efficient development of software to do
 economic decision-making experiments.
 
 
@@ -103,7 +103,7 @@ To see the list of Python versions you have installed:
 
 You can get a list of all the Python versions that `pyenv` can install
 
-	$ pyenv install list
+	$ pyenv install --list
 
 You'll get a long list of options (which we don't include here).
 As of the writing of this section, 3.7.7 is the most recent
