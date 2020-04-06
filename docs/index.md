@@ -25,7 +25,7 @@ program, to become familiar with how `git` works.
 to be written!)
 
 Python comes pre-installed on a Mac, or you can download it from
-the official Python website.  *However*, we *strongly recommend*
+the official Python website.  However, we *strongly recommend*
 that you don't develop your software using the system Python
 or one you download and install directly.  The reason is that a
 Python installation consists of both the Python interpreter, as well
